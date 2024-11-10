@@ -173,13 +173,14 @@ class PingPongTournament {
         this.rightPaddle.getInfo(),
         this.leftPaddle.getInfo(),
       ]);
-
       if (
         ballInfo.left <= containerInfo.left ||
         ballInfo.right >= containerInfo.right
       ) {
-        if (ballInfo.left <= containerInfo.left && ballInfo.left && ballInfo.left >= 430)
-        this.scores[1]++;
+       
+        if (Math.floor(ballInfo.left) <= Math.floor(containerInfo.left) && this.ball.x){
+          this.scores[1]++;
+      }
         if (ballInfo.right >= containerInfo.right) this.scores[0]++;
         this.ball.reset();
         this.leftPaddle.reset();
@@ -367,7 +368,6 @@ class PingPongTournament {
 
     // Show bracket for 3 seconds
     this.toggleViews(true);
-
     setTimeout(() => {
       this.currentMatch++;
       if (this.currentMatch <= 7) {

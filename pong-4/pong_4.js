@@ -173,13 +173,14 @@ class PingPongTournament {
         this.rightPaddle.getInfo(),
         this.leftPaddle.getInfo(),
       ]);
-
       if (
         ballInfo.left <= containerInfo.left ||
         ballInfo.right >= containerInfo.right
       ) {
-        if (ballInfo.left <= containerInfo.left && ballInfo.left && ballInfo.left >= 430)
-        this.scores[1]++;
+       
+        if (Math.floor(ballInfo.left) <= Math.floor(containerInfo.left) && this.ball.x){
+          this.scores[1]++;
+      }
         if (ballInfo.right >= containerInfo.right) this.scores[0]++;
         this.ball.reset();
         this.leftPaddle.reset();
@@ -310,13 +311,6 @@ class PingPongTournament {
       return this.players[matchIndex * 2 - 2 + playerIndex] || "TBD";
     }
   }
-
-  updateBallPosition() {
-    const ballElem = document.querySelector(".ball");
-    ballElem.style.left = `${this.ball.x}px`;
-    ballElem.style.top = `${this.ball.y}px`;
-  }
-
   
   toggleViews(showBracket) {
     const bracket = document.querySelector(".tournament-bracket");
@@ -367,10 +361,9 @@ class PingPongTournament {
 
     // Show bracket for 3 seconds
     this.toggleViews(true);
-
     setTimeout(() => {
       this.currentMatch++;
-      if (this.currentMatch <= 7) {
+      if (this.currentMatch <= 3) {
         this.updateDisplay();
         this.toggleViews(false);
       } else {
@@ -380,26 +373,17 @@ class PingPongTournament {
   }
 
   updateBracket() {
-    if (this.currentMatch === 5 || this.currentMatch === 6) {
-      // Update the winner for the semifinal match
-      const finalPlayerIndex = this.currentMatch - 4; // 1 for match5, 2 for match6
+    if (this.currentMatch <= 2) {
       const finalPlayer = document.querySelector(
-        `#match7 .player:nth-child(${finalPlayerIndex})`
+        `#match3 .player:nth-child(${this.currentMatch })`
       );
       finalPlayer.textContent = this.winners[`match${this.currentMatch}`];
-    } else if (this.currentMatch === 7) {
-      // Set the winner for the final match
-      const winner = document.querySelector(`#match7 .winner`);
-      winner.textContent = this.winners[`match${this.currentMatch}`];
     }
   }
-
 }
-
 
 // Initialize the tournament
 window.addEventListener('load', connectMetaMask);
-
 window.addEventListener("load", () => {
   new PingPongTournament();
 });
