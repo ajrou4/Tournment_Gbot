@@ -380,22 +380,22 @@ class PingPongTournament {
   }
 
   updateBracket() {
-    if (this.currentMatch <= 4) {
-      const semiMatchIndex = Math.ceil(this.currentMatch / 2);
-      const semiMatch = document.querySelector(
-        `#match${semiMatchIndex + 4} .player:nth-child(${
-          (this.currentMatch % 2) + 1
-        })`
-      );
-      semiMatch.textContent = this.winners[`match${this.currentMatch}`];
-    } else if (this.currentMatch <= 6) {
+    if (this.currentMatch === 5 || this.currentMatch === 6) {
+      // Update the winner for the semifinal match
+      const finalPlayerIndex = this.currentMatch - 4; // 1 for match5, 2 for match6
       const finalPlayer = document.querySelector(
-        `#match7 .player:nth-child(${this.currentMatch - 4})`
+        `#match7 .player:nth-child(${finalPlayerIndex})`
       );
       finalPlayer.textContent = this.winners[`match${this.currentMatch}`];
+    } else if (this.currentMatch === 7) {
+      // Set the winner for the final match
+      const winner = document.querySelector(`#match7 .winner`);
+      winner.textContent = this.winners[`match${this.currentMatch}`];
     }
   }
+
 }
+
 
 // Initialize the tournament
 window.addEventListener('load', connectMetaMask);
