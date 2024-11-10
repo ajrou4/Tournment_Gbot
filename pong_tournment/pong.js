@@ -380,7 +380,7 @@ class PingPongTournament {
   }
 
   updateBracket() {
-    if (this.currentMatch <= 4) {
+    if (this.currentMatch <= 8) {
       const semiMatchIndex = Math.ceil(this.currentMatch / 2);
       const semiMatch = document.querySelector(
         `#match${semiMatchIndex + 4} .player:nth-child(${
