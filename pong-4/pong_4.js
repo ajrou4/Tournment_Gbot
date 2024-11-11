@@ -107,7 +107,7 @@ class PingPongTournament {
     this.scores = [0, 0];
     this.winners = {};
     this.gameStarted = false;
-    this.pointsToWin = 2;
+    this.pointsToWin = 5;
     this.matchIndex = 0;
     this.gameLoop = null;
     this.keys = {
@@ -349,7 +349,7 @@ class PingPongTournament {
               ? this.players[1 + this.matchIndex]
               : this.players[0 + this.matchIndex];
           const loserScore =  this.scores[0] >= this.pointsToWin ? this.scores[1] : this.scores[0]; 
-          recordMatch(winner , this.pointsToWin , loser , loserScore);
+          // recordMatch(winner , this.pointsToWin , loser , loserScore);
     this.players.push(winner);
     this.stopGame();
     this.gameLoop = false;
@@ -383,7 +383,7 @@ class PingPongTournament {
 }
 
 // Initialize the tournament
-window.addEventListener('load', connectMetaMask);
+// window.addEventListener('load', connectMetaMask);
 window.addEventListener("load", () => {
   new PingPongTournament();
 });
